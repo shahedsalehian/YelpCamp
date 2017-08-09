@@ -1,0 +1,24 @@
+module.exports
+++++++++
+if you want to export a model from a model file you need to export a module
+so ..
+
+module.exports = mongoose.model("User", userSchema)
+
+
+
+
+mongoose.model
+++++++++++++++
+models are basically constructors of compiled of schema definitions that we previously define
+so...
+
+// definition of model
+var schema = new mongoose.Schema(
+    {
+        name: String,
+        size: Number
+    }
+)
+// model cosntructor
+var Tank = mongoose.model("Tank", schema);
