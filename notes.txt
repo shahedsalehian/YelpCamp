@@ -47,6 +47,8 @@ WHAT TO DO IN A CRUD APPLICATION
     - partials have to be created for header and footer
         - things that are consistent throught all the pages
         - e.g. navbar
+    - giving an input element an object name like "comment[text]" and "comment[author]" allows you to access the comment object in
+        the request
 3. DB SETUP
     - models folder contain the Schema
         with which the db collections
