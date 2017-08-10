@@ -2,9 +2,10 @@ var express         = require("express");
 var app             = express();
 var bodyParser      = require("body-parser");
 var mongoose        = require("mongoose");
-var Campground      = require("./models/campground")
+var Campground      = require("./models/campground");
+var seedDB         = require("./seeds");
 
-
+seedDB();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -70,42 +71,11 @@ app.get("/campgrounds/new", function(req,res){
 
 //SHOW
 app.get("/campgrounds/:id", function(req,res){
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
         }else{
-            res.render("show", {campground: foundCampground});
-        }
-    });
-});
-
-//NEW //has to be declared first
-app.get("/campgrounds/new", function(req,res){
-    res.render("new");
-});
-
-//SHOW
-app.get("/campgrounds/:id", function(req,res){
-    Campground.findById(req.params.id, function(err, foundCampground){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("show", {campground: foundCampground});
-        }
-    });
-});
-
-//NEW //has to be declared first
-app.get("/campgrounds/new", function(req,res){
-    res.render("new");
-});
-
-//SHOW
-app.get("/campgrounds/:id", function(req,res){
-    Campground.findById(req.params.id, function(err, foundCampground){
-        if(err){
-            console.log(err);
-        }else{
+            console.log(foundCampground);
             res.render("show", {campground: foundCampground});
         }
     });
