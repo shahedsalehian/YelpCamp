@@ -8,8 +8,8 @@ var campgroundSchema = new Schema({
     description: String,
     comments: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Comment"
+            type: mongoose.Schema.Types.ObjectId, // array of ObjectId's 
+            ref: "Comment"                        // tells mongoose which model to use during population
         }
     ]
 });

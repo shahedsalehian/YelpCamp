@@ -6,13 +6,14 @@ var Campground      = require("./models/campground");
 var seedDB          = require("./seeds");
 var Comment         = require("./models/comments");
 
-//seedDB();
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(express.static(__dirname + "/public"));
+console.log(__dirname);
 mongoose.connect("mongodb://localhost/campgrounds");
-
+//seedDB();
 
 //LANDING
 app.get('/', function(req,res){
@@ -84,8 +85,8 @@ app.post("/campgrounds/:id/comments", function(req,res){
                 if(err){
                     console.log(err);
                 }else{
-                    campground.comments.push(comment);
-                    campground.save();
+                    campground.comments.push(comment); //we're pushing into the comments array of objects
+                    campground.save(); //saves it to the DB
                     res.redirect("/campgrounds/" + campground._id);
                 }
             })

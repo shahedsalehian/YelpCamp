@@ -6,17 +6,17 @@ var data = [
     {
         name: "Clouds Rest",
         image: "https://i.imgur.com/WkNL8jj.png",
-        description: "This is Destiny"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum deleniti neque soluta quasi alias nesciunt quos consequuntur in repellendus, iste numquam consequatur architecto tenetur nobis laboriosam sint, delectus odio sed!"
     },
     {
         name: "Destiny Rest",
         image: "https://blogs-images.forbes.com/johngaudiosi/files/2011/09/destiny-starcraft-235x300.jpg?width=960",
-        description: "This is Destiny"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum deleniti neque soluta quasi alias nesciunt quos consequuntur in repellendus, iste numquam consequatur architecto tenetur nobis laboriosam sint, delectus odio sed!"
     },
     {
         name: "EZ Rest",
         image: "https://i.ytimg.com/vi/tipczD5qk6w/maxresdefault.jpg",
-        description: "This is Destiny"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum deleniti neque soluta quasi alias nesciunt quos consequuntur in repellendus, iste numquam consequatur architecto tenetur nobis laboriosam sint, delectus odio sed!"
     }
 ]
 

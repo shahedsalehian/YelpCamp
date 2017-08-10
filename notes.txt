@@ -5,6 +5,8 @@ so ..
 
 module.exports = mongoose.model("User", userSchema)
 
+module.exports acts as a return!
+
 
 
 
@@ -22,3 +24,57 @@ var schema = new mongoose.Schema(
 )
 // model cosntructor
 var Tank = mongoose.model("Tank", schema);
+
+
+//ensuring that function order is respected
+    - do nested function callbacks!
+
+
+=======================================
+WHAT TO DO IN A CRUD APPLICATION
+=======================================
+1. ROUTING
+    - routes can be established for
+        different categories
+    - e.g. campgrounds AND comments.. etc.
+    - ROUTES TO CONSIDER:
+        - INDEX
+        - SHOW
+        - CREATE
+        - DELETE
+        - NEW
+2. VIEWS
+    - partials have to be created for header and footer
+        - things that are consistent throught all the pages
+        - e.g. navbar
+3. DB SETUP
+    - models folder contain the Schema
+        with which the db collections
+        will be designed
+    - export said models with 
+        module.exports = mongoose.model(...)
+    - use: 
+        Campground.create(**object**, function(err,newlyCreated){
+    -Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
+        to associate and populate a campground with its comments
+    - Comment.create(req.body.comment, function(err,comment){
+                if(err){
+                    console.log(err);
+                }else{
+                    campground.comments.push(comment);
+                    campground.save();
+                    res.redirect("/campgrounds/" + campground._id);
+                }
+
+                this is used to create a comment and associate it with its campground
+                
+    -   var campgroundSchema = new Schema({
+            name: String,
+            image: String,
+            description: String,
+            comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment" }]
+        });
+
+        In the schema we can associate comments to campgrounds by using this pattern.
+        Here we are using an array of comment objects which have a type and a ref
+        the type is always going to be associated by ID and ref is telling mongoose which
