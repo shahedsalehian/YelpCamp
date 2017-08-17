@@ -13,3 +13,7 @@
 hr{
     border-color: black;
 }
+
+#delete-form{
+    display: inline;
+}
