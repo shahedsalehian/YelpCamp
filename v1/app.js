@@ -15,13 +15,19 @@ var commentRoutes       = require("./routes/comments"),
     indexRoutes         = require("./routes/index");
 
 
+//setting the promise to make error warning in CLI to go away
+mongoose.Promise = global.Promise;
+
 //APP CONFIG
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
-mongoose.connect("mongodb://localhost/campgrounds");
-//seedDB();
+mongoose.connect("mongodb://localhost/campgrounds",{useMongoClient: true}); // using {useMongoClient: true} to make Mongoose error warning in CLI go away
 app.use(methodOverride("_method"));
+//
+//seedDB();
+//
+
 
 //PASSPORT CONFIG
 app.use(require("express-session")({
@@ -36,6 +42,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //this function is passed onto every route so we can access the user from all templates
+//so we can access the "currentUser" from all templates
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     next();
