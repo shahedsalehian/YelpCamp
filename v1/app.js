@@ -2,6 +2,7 @@ var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
     mongoose        = require("mongoose"),
+    flash           = require("connect-flash"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
     User            = require("./models/user"),
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 mongoose.connect("mongodb://localhost/campgrounds",{useMongoClient: true}); // using {useMongoClient: true} to make Mongoose error warning in CLI go away
 app.use(methodOverride("_method"));
+app.use(flash());
 //
 //seedDB();
 //
@@ -45,6 +47,8 @@ passport.deserializeUser(User.deserializeUser());
 //so we can access the "currentUser" from all templates
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
+    res.locals.error   = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

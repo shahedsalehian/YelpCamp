@@ -4,6 +4,7 @@ var Schema   = mongoose.Schema;
 //SCHEMA SETUP
 var campgroundSchema = new Schema({
     name: String,
+    price: String,
     image: String,
     description: String,
     author: {
