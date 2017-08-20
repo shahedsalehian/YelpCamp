@@ -17,3 +17,8 @@ hr{
 .delete-form{
     display: inline;
 }
+
+.center-form{
+    width: 30%;
+    margin: 50px auto;
+}

@@ -5,6 +5,7 @@ var router = express.Router({
 var Campground = require("../models/campground");
 var Comment = require("../models/comments");
 var middleware = require("../middleware");
+var moment = require("moment");
 
 //NEW COMMENT
 router.get("/new",middleware.isLoggedIn,function(req,res){
@@ -32,6 +33,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
                     //add username and id to comments
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
+                    comment.time = moment().format("dddd, MMMM Do YYYY");
                     //save comment
                     comment.save();
                     campground.comments.push(comment); //we're pushing into the comments array of objects
